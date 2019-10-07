@@ -1,5 +1,5 @@
 
-export const addValue = (login, password, users) => {
+export const verification = (login, password, users) => {
     let log;
     users.forEach(user => {
         if (login === user.login && password === user.password) {
@@ -9,7 +9,7 @@ export const addValue = (login, password, users) => {
         
     }) 
     return {
-        type: 'ADD',
+        type: 'CHECK_USER',
         payload: {
             login,
             password,

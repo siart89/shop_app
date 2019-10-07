@@ -1,4 +1,12 @@
 import styled, {css} from 'styled-components';
+import {keyframes} from 'styled-components';
+
+export const Wrapper = styled.div`
+    height:100vh;
+    width:100vw;
+    background: rgba(218, 229, 242, .3);
+    padding-top:200px;
+`;
 
 export const Form = styled.form`
     display:flex;
@@ -6,10 +14,20 @@ export const Form = styled.form`
     justify-content:center;
     align-items:center;
     margin:0 auto;
-    max-width: 50vw;
-    
-    
+    max-width: 50vw;    
+    position:relative;
+    padding-top:15px;
 `;
+
+const Animations = keyframes`
+    from {
+        box-shadow: 2px 2px 4px #838587;
+    }
+    to {
+        box-shadow: 0px 0px 0px #838587;
+    }
+`;
+
 
 export const Input = styled.input.attrs(props => ({
     type: props.type,
@@ -25,6 +43,13 @@ export const Input = styled.input.attrs(props => ({
         margin-top:0.5em;
     ` };
     font-size:14px;
+    transition:box-shadow 0.3s ease-in;
+
+    &:hover{
+        animation: ${Animations} 1.0s linear;
+    };
+
+
 `;
 
 export const Button = styled.button`
@@ -39,6 +64,11 @@ export const Button = styled.button`
     font-size:14px;
     color:#fff;
     cursor:pointer;
+    transition: background .5s ease;
+
+    &:hover{
+        background:#609ceb;
+    }
     
 `;
 
@@ -48,4 +78,12 @@ export const Title = styled.div`
     width:100%;
     text-align:center;
     padding-bottom:1em;
+`
+export const ErrMessage = styled.div`
+    position:absolute;
+    top:-10px;
+    text-align:center;
+    color:#eb385c;
+    font-size:12px;
+    font-weight:bold;
 `

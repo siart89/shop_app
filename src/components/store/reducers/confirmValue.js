@@ -1,6 +1,6 @@
 const confirmValue = (state = '', action) => {
     switch (action.type) {
-        case 'ADD':
+        case 'CHECK_USER':
             return {
                 login: action.payload.login,
                 password: action.payload.password,

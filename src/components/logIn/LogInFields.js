@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { Form, Input, Button } from './styles/inputFeildStyles';
+import { Form, Input, Button, ErrMessage } from './styles/logInFieldsStyles';
 import { useSelector, useDispatch } from 'react-redux';
-import { addValue } from '../store/actions';
+import { verification } from '../store/actions/verification';
 
-const InputField = () => {
+const LogInFields = () => {
     const value = useSelector(state => state.value);
     const users = useSelector(state => state.users);
     const dispatch = useDispatch();
@@ -15,10 +15,14 @@ const InputField = () => {
         <Form
             onSubmit={(e) => {
                 e.preventDefault();
-                dispatch(addValue(login, pass, users));
+                dispatch(verification(login, pass, users));
                 setIsClicked(true);
             }}
         >
+            {!isClicked ? '' :
+                value.isLogged ? '' :
+                    <ErrMessage>Wron password or login</ErrMessage>
+            }
             <Input
                 type="text"
                 placeholder="User name"
@@ -26,6 +30,7 @@ const InputField = () => {
                     setLogin(e.target.value);
                     setIsClicked(false);
                 }}
+                required
             />
             <Input
                 type="password"
@@ -35,10 +40,11 @@ const InputField = () => {
                     setPass(e.target.value);
                     setIsClicked(false);
                 }}
+                required
             />
             <Button>Log In</Button>
         </Form>
     );
 };
 
-export default InputField;
+export default LogInFields;
