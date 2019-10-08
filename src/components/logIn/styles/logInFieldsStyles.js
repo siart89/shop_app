@@ -1,11 +1,17 @@
-import styled, {css} from 'styled-components';
-import {keyframes} from 'styled-components';
+import styled, { css } from 'styled-components';
+import { keyframes } from 'styled-components';
+import { Link } from 'react-router-dom';
+import {Icon} from 'react-icons-kit';
+
 
 export const Wrapper = styled.div`
     height:100vh;
     width:100vw;
-    background: rgba(218, 229, 242, .3);
+    background: rgba(218, 229, 242, .4);
     padding-top:200px;
+    top:7vh;
+    position:fixed;
+    overflow-y:hidden;
 `;
 
 export const Form = styled.form`
@@ -48,8 +54,6 @@ export const Input = styled.input.attrs(props => ({
     &:hover{
         animation: ${Animations} 1.0s linear;
     };
-
-
 `;
 
 export const Button = styled.button`
@@ -87,3 +91,15 @@ export const ErrMessage = styled.div`
     font-size:12px;
     font-weight:bold;
 `
+
+export const CloseButton = styled(Link)`
+    position: absolute;
+    right: 5vh;
+    top: 2vh;
+    text-decoration:none; 
+`;
+
+export const Icons = styled(Icon)`
+    font-size:18px;
+    color:#000;
+`;
