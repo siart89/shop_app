@@ -4,7 +4,8 @@ export const addUser = (email, login, password, ) => {
         payload: {
             email,
             login,
-            password
+            password,
+            logged:true,
         }
     };
 };
