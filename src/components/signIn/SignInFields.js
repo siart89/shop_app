@@ -15,20 +15,21 @@ const SignInFields = () => {
     const [password, setPassword] = useState('');
     const [currentEmail, setCurrentEmail] = useState(true);
     const [currentLogin, setCurrentLogin] = useState(true);
-    const [isLogIn, setIsLogIn] = useState(false);
+    const [isLogIn, setIsLogIn] = useState(null);
     const history = useHistory();
 
     useEffect(() => {
         users.forEach(user => {
             if (user.logged) {
                 setIsLogIn(user.login);
-                setTimeout(() => { history.push('/') }, 4000);
+                setTimeout(() => { history.push('/') }, 3000);
             };
         });
     })
 
     function addUserOnSubmit(e) {
         e.preventDefault();
+
         if (currentEmail && currentLogin) {
             dispatch(addUser(email, login, password));
             dispatch(toLocalStorage());
@@ -36,7 +37,7 @@ const SignInFields = () => {
 
     };
 
-    //localStorage.clear();
+
     const checkUsers = () => {
         users.forEach(user => {
             if (user.login === login) setCurrentLogin(false);

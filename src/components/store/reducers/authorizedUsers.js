@@ -12,6 +12,14 @@ const authorizedUsers = (state = JSON.parse(localStorage.getItem('users')) || us
         case 'TO_LOCALSTORAGE':
             localStorage.setItem('users', JSON.stringify(state));
             return state;
+        case 'LOG_OUT': 
+            state.map(user => {
+                if (user.logged) {
+                    user.logged = false;
+                    return user;
+                }
+            }); 
+            return state;
         default: 
         return state;
     };

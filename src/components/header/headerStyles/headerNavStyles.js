@@ -1,4 +1,4 @@
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const NavWrapper = styled.div`
@@ -15,12 +15,14 @@ export const LinksWrapper = styled.div`
     display:flex;
     align-items:center;
     justify-content:space-around;
+    position:relative;
 `;
 export const Links = styled(Link)`
     text-decoration:none;
     font-size: 14px;
-    color: #e7e6ed;
+    color: ${props => props.color || '#e7e6ed'};
     text-transform:uppercase;
+    cursor:pointer;
 `;
 
 export const Logo = styled(Link)`
