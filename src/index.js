@@ -6,9 +6,10 @@ import { Provider } from 'react-redux';
 import { createGlobalStyle } from 'styled-components';
 import { createStore } from 'redux';
 import AllReducers from './components/store/reducers/AllReducers';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
-import { AuthStatus } from './components/context/IsAuthContext';
-
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import LogIn from './pages/LogIn';
+import SignIn from './pages/SignIn';
+import UserMenu from './components/usersProfile/UserMenu';
 
 const store = createStore(
   AllReducers,
@@ -30,14 +31,15 @@ const GlobalStyle = createGlobalStyle`
 
 ReactDOM.render(
   <Router>
-    <AuthStatus>
-      <Provider store={store}>
-        <GlobalStyle />
-        <Route path='/'>
-          <App />
-        </Route>
-      </Provider>
-    </AuthStatus>
+    <Provider store={store}>
+      <GlobalStyle />
+      <Switch>
+        <Route path='/' exact component={App} />
+        <Route path='/logIn' component={LogIn} />
+        <Route path='/signIn' component={SignIn} />
+        <Route path='/user/:logUser' component={UserMenu} />
+      </Switch>
+    </Provider>
   </Router>
   , document.getElementById('root'));
 

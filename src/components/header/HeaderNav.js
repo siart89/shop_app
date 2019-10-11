@@ -1,16 +1,15 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Links, NavWrapper, LinksWrapper, Logo } from './headerStyles/headerNavStyles';
 import SearchInput from './SearchInput';
 import Catalog from './Catalog';
 import { useSelector } from 'react-redux';
 import UserInfo from '../logIn/UserInfo';
-import { IsAuthContext } from '../context/IsAuthContext';
+
 
 const HeaderNav = () => {
     const users = useSelector(state => state.users);
-    const [isLogIn, setIsLogIn] = useState('admin');
-    const [authStatus, setAuthStatus] = useContext(IsAuthContext);
-    console.log(users);
+    const [isLogIn, setIsLogIn] = useState(null);
+    
     const setCurrentUserIsLogged = (arr) => {
         arr.forEach(user => {
             if (user.logged) {
@@ -22,6 +21,9 @@ const HeaderNav = () => {
     useEffect(() => {
         setCurrentUserIsLogged(users)
     }, [users]);
+    const UserIsExit =() => {
+            setIsLogIn(null);
+    };
 
     return (
        
@@ -30,10 +32,11 @@ const HeaderNav = () => {
             <Catalog />
             <SearchInput />
             <LinksWrapper>
-                {authStatus ?
+                {isLogIn ?
                     <>
                         <UserInfo
                             user={isLogIn}
+                            UserIsExit={UserIsExit}
                         />
                         <Links to="/cart">Cart</Links>
                     </> :
