@@ -1,27 +1,46 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Form, Input, Button, ErrMessage } from './styles/logInFieldsStyles';
 import { useSelector, useDispatch } from 'react-redux';
-import { verification } from '../store/actions/verification';
+import { logIn } from '../store/actions/logIn';
+import { toLocalStorage } from '../store/actions/toLocalStorage';
+import { useHistory } from 'react-router-dom';
+import { IsAuthContext } from '../context/IsAuthContext';
+
 
 const LogInFields = () => {
-    const value = useSelector(state => state.value);
     const users = useSelector(state => state.users);
     const dispatch = useDispatch();
     const [login, setLogin] = useState('');
     const [pass, setPass] = useState('');
     const [isClicked, setIsClicked] = useState(false);
+    const history = useHistory();
+    const [authStatus, setAuthStatus] = useContext(IsAuthContext);
+
+    const isCorrectUser = () => {
+        users.forEach(user => {
+            if (user.login === login && user.password === pass) {
+                setAuthStatus(true);
+                return;
+            };
+        });
+    };
 
     return (
         <Form
             onSubmit={(e) => {
                 e.preventDefault();
-                dispatch(verification(login, pass, users));
+                dispatch(logIn(login, pass));
+                dispatch(toLocalStorage());
                 setIsClicked(true);
+                if (authStatus) {
+                    history.push('/');
+                }
+
             }}
         >
             {!isClicked ? '' :
-                value.isLogged ? '' :
-                    <ErrMessage>Wron password or login</ErrMessage>
+                authStatus ? '' :
+                    <ErrMessage>Wrong password or login</ErrMessage>
             }
             <Input
                 type="text"
@@ -42,7 +61,7 @@ const LogInFields = () => {
                 }}
                 required
             />
-            <Button>Log In</Button>
+            <Button onClick={isCorrectUser}>Log In</Button>
         </Form>
     );
 };

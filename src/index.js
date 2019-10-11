@@ -6,7 +6,8 @@ import { Provider } from 'react-redux';
 import { createGlobalStyle } from 'styled-components';
 import { createStore } from 'redux';
 import AllReducers from './components/store/reducers/AllReducers';
-
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { AuthStatus } from './components/context/IsAuthContext';
 
 
 const store = createStore(
@@ -27,15 +28,17 @@ const GlobalStyle = createGlobalStyle`
   `
 
 
-
-
-
 ReactDOM.render(
-  <Provider store={store}>
-    <GlobalStyle />
-    <App />
-  </Provider>
-
+  <Router>
+    <AuthStatus>
+      <Provider store={store}>
+        <GlobalStyle />
+        <Route path='/'>
+          <App />
+        </Route>
+      </Provider>
+    </AuthStatus>
+  </Router>
   , document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change

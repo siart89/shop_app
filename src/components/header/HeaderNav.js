@@ -1,18 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Links, NavWrapper, LinksWrapper, Logo } from './headerStyles/headerNavStyles';
 import SearchInput from './SearchInput';
 import Catalog from './Catalog';
-import { useSelector, useDispatch } from 'react-redux';
-import { UserMenuWrapper } from './headerStyles/userMenuStyle';
-import { logOut } from '../store/actions/logOut';
-import { toLocalStorage } from '../store/actions/toLocalStorage';
+import { useSelector } from 'react-redux';
+import UserInfo from '../logIn/UserInfo';
+import { IsAuthContext } from '../context/IsAuthContext';
 
 const HeaderNav = () => {
     const users = useSelector(state => state.users);
-    const [isLogIn, setIsLogIn] = useState(null);
-    const [isInsert, setIsInsert] = useState(false);
-    const dispatch = useDispatch();
-
+    const [isLogIn, setIsLogIn] = useState('admin');
+    const [authStatus, setAuthStatus] = useContext(IsAuthContext);
+    console.log(users);
     const setCurrentUserIsLogged = (arr) => {
         arr.forEach(user => {
             if (user.logged) {
@@ -22,37 +20,21 @@ const HeaderNav = () => {
     };
     
     useEffect(() => {
-        setCurrentUserIsLogged(users);
-    },[users])
+        setCurrentUserIsLogged(users)
+    }, [users]);
 
-    const handleOnClick = () => {
-        setIsInsert(!isInsert);
-    };
-  
     return (
+       
         <NavWrapper>
             <Logo to='/'>Shop_App</Logo>
             <Catalog />
             <SearchInput />
             <LinksWrapper>
-                {isLogIn ?
+                {authStatus ?
                     <>
-                        <div onClick={handleOnClick}>
-                            <Links to='' as='div'>{isLogIn}</Links>
-                            {isInsert ?
-                                <UserMenuWrapper>
-
-                                    <Links to={`/user/${isLogIn}`} color='black'>{isLogIn}</Links>
-                                    <Links to="" color='black'>Some point</Links>
-                                    <Links to="" color='black'>Some point</Links>
-                                    <Links to="/" color='black' 
-                                    onClick={() => {dispatch(logOut()); dispatch(toLocalStorage()); setIsLogIn(false)}}>Exit</Links>
-
-                                </UserMenuWrapper>
-                                : ''
-                            }
-                        </div>
-
+                        <UserInfo
+                            user={isLogIn}
+                        />
                         <Links to="/cart">Cart</Links>
                     </> :
                     <>
