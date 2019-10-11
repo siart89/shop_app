@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Form, Input, Button, ErrMessage, Title } from '../logIn/styles/logInFieldsStyles';
 import { useSelector, useDispatch } from 'react-redux';
 import { addUser } from '../store/actions/addUser';
 import { toLocalStorage } from '../store/actions/toLocalStorage';
 import { withRouter, useHistory } from 'react-router-dom';
-import { IsAuthContext } from '../context/IsAuthContext';
+
 
 
 
@@ -18,7 +18,7 @@ const SignInFields = () => {
     const [currentLogin, setCurrentLogin] = useState(true);
     const [isLogIn, setIsLogIn] = useState(null);
     const history = useHistory();
-    const [authStatus, setAuthStatus] = useContext(IsAuthContext);
+
 
     useEffect(() => {
         users.forEach(user => {
@@ -35,7 +35,6 @@ const SignInFields = () => {
         if (currentEmail && currentLogin) {
             dispatch(addUser(email, login, password));
             dispatch(toLocalStorage());
-            setAuthStatus(true);
         };
 
     };

@@ -1,15 +1,15 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { logOut } from '../store/actions/logOut';
 import { toLocalStorage } from '../store/actions/toLocalStorage';
 import { useDispatch } from 'react-redux';
 import { Links } from '../header/headerStyles/headerNavStyles';
 import { UserMenuWrapper } from './styles/userMenuWrapper';
-import { IsAuthContext } from '../context/IsAuthContext';
 
-const UserInfo = ({ user }) => {
+
+const UserInfo = ({ user, UserIsExit }) => {
     const [isClick, setIsClick] = useState(false);
     const dispatch = useDispatch();
-    const [authStatus, setAuthStatus] = useContext(IsAuthContext);
+
     return (
         <div onClick={() => setIsClick(!isClick)}>
             <Links to='' as='div'>{user}</Links>
@@ -19,7 +19,7 @@ const UserInfo = ({ user }) => {
                     <Links to="" color='black'>Some point</Links>
                     <Links to="" color='black'>Some point</Links>
                     <Links to="/" color='black'
-                        onClick={() => { dispatch(logOut()); dispatch(toLocalStorage()); setAuthStatus(false) }}>
+                        onClick={() => { dispatch(logOut()); dispatch(toLocalStorage()); UserIsExit() }}>
                         Exit
                     </Links>
 
