@@ -3,7 +3,7 @@ import { logOut } from '../store/actions/logOut';
 import { toLocalStorage } from '../store/actions/toLocalStorage';
 import { useDispatch } from 'react-redux';
 import { Links } from '../header/headerStyles/headerNavStyles';
-import { UserMenuWrapper } from './styles/userMenuWrapper';
+import { PopUpWrapper } from './styles/popUpWrapper';
 
 
 const UserInfo = ({ user, UserIsExit }) => {
@@ -14,16 +14,17 @@ const UserInfo = ({ user, UserIsExit }) => {
         <div onClick={() => setIsClick(!isClick)}>
             <Links to='' as='div'>{user}</Links>
             {isClick ?
-                <UserMenuWrapper>
+                <PopUpWrapper>
                     <Links to={`/user/${user}`} color='black'>{user}</Links>
-                    <Links to="" color='black'>Some point</Links>
-                    <Links to="" color='black'>Some point</Links>
+                    <Links to="" color='black' padding>History</Links>
+                    <Links to="" color='black' padding>Edit profile</Links>
                     <Links to="/" color='black'
+                        padding
                         onClick={() => { dispatch(logOut()); dispatch(toLocalStorage()); UserIsExit() }}>
                         Exit
                     </Links>
 
-                </UserMenuWrapper>
+                </PopUpWrapper>
                 : ''
             }
         </div>

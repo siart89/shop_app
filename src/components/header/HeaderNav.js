@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { Links, NavWrapper, LinksWrapper, Logo } from './headerStyles/headerNavStyles';
+import { Links, NavWrapper, LinksWrapper, Logo, StyledIcon } from './headerStyles/headerNavStyles';
 import SearchInput from './SearchInput';
 import Catalog from './Catalog';
 import { useSelector } from 'react-redux';
 import UserInfo from '../logIn/UserInfo';
+import { shoppingCart } from 'react-icons-kit/fa/shoppingCart';
+
 
 
 const HeaderNav = () => {
     const users = useSelector(state => state.users);
     const [isLogIn, setIsLogIn] = useState(null);
-    
+
     const setCurrentUserIsLogged = (arr) => {
         arr.forEach(user => {
             if (user.logged) {
@@ -17,16 +19,16 @@ const HeaderNav = () => {
             };
         });
     };
-    
+
     useEffect(() => {
         setCurrentUserIsLogged(users)
     }, [users]);
-    const UserIsExit =() => {
-            setIsLogIn(null);
+    const UserIsExit = () => {
+        setIsLogIn(null);
     };
-
+    
     return (
-       
+
         <NavWrapper>
             <Logo to='/'>Shop_App</Logo>
             <Catalog />
@@ -38,7 +40,7 @@ const HeaderNav = () => {
                             user={isLogIn}
                             UserIsExit={UserIsExit}
                         />
-                        <Links to="/cart">Cart</Links>
+                        <StyledIcon icon={shoppingCart} size={20} />
                     </> :
                     <>
                         <Links to="/logIn">log in</Links>

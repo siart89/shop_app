@@ -1,19 +1,13 @@
 
 
-// const users = [{
-//     email: 'admin@admim.ru',
-//     login: 'admin',
-//     password: 'admin',
-//     logged: false
-// }];
-localStorage.setItem('users', JSON.stringify([{
+const users = [{
     email: 'admin@admim.ru',
     login: 'admin',
     password: 'admin',
     logged: false
-}]));
+}];
 
-const authorizedUsers = (state = JSON.parse(localStorage.getItem('users')), action) => {
+const authorizedUsers = (state = JSON.parse(localStorage.getItem('users')) || users, action) => {
     switch (action.type) {
         case 'ADD_USER':
             return [...state, action.payload];
