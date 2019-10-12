@@ -1,15 +1,18 @@
 import React from 'react';
-import Header from './pages/Header';
+import Main from './pages/Main';
 import styled from 'styled-components';
 
-const AppWrapper = styled.div``;
+const AppWrapper = styled.div`
+  max-width:1480px;
+  margin: 0 auto;
+`;
 
 
 function App() {
   return (
    
       <AppWrapper>
-        <Header />
+        <Main />
       </AppWrapper>
    
 
