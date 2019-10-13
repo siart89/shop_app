@@ -2,7 +2,7 @@ import React from 'react';
 import Main from './pages/Main';
 import styled from 'styled-components';
 
-const AppWrapper = styled.div`
+export const AppWrapper = styled.div`
   max-width:1480px;
   margin: 0 auto;
 `;

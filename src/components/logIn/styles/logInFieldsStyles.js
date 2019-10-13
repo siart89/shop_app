@@ -6,7 +6,7 @@ import {Icon} from 'react-icons-kit';
 
 export const Wrapper = styled.div`
     height:100vh;
-    width:100vw;
+    width:1480px;
     background: rgba(218, 229, 242, .4);
     padding-top:200px;
     top:55px;
@@ -20,7 +20,7 @@ export const Form = styled.form`
     justify-content:center;
     align-items:center;
     margin:0 auto;
-    max-width: 50vw;    
+    max-width: 50%;    
     position:relative;
     padding-top:15px;
 `;
