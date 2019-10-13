@@ -27,7 +27,8 @@ const filterType = [
  const filterTypes = (state = filterType, action) => {
     switch (action.type) {
         case 'IS_CHECK':
-            state.map(elem => {
+            const newState = state.concat();
+            newState.map(elem => {
                 if (elem.type === action.payload) {
                     elem.check = true;
                     return elem;
@@ -36,7 +37,7 @@ const filterType = [
                     return elem;
                 };
             });
-            return state;
+            return newState;
         default:
             return state;
     };
