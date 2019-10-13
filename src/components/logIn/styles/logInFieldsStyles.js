@@ -9,7 +9,7 @@ export const Wrapper = styled.div`
     width:100vw;
     background: rgba(218, 229, 242, .4);
     padding-top:200px;
-    top:7vh;
+    top:55px;
     position:fixed;
     overflow-y:hidden;
 `;

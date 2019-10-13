@@ -4,6 +4,8 @@ import HeaderImg from '../components/header/HeaderImg';
 import { HeaderWrapper } from '../components/header/headerStyles/headerWrapperStyles';
 import ProductsWrapper from '../components/products/productsStyles.js/productsWrapper';
 import ProductList from '../components/products/ProductList';
+import ProductsFilter from '../components/products/ProductsFilter';
+
 const Main = () => {
     return (
         <>
@@ -12,7 +14,7 @@ const Main = () => {
                 <HeaderImg />
             </HeaderWrapper>
             <ProductsWrapper>
-                <div></div>
+                <ProductsFilter />
                <ProductList />
             </ProductsWrapper>
         </>
