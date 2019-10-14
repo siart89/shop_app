@@ -1,6 +1,9 @@
-export const isFilterCheck = (type) => {
+export const isFilterCheck = (type, isOn) => {
     return {
         type:'IS_CHECK',
-        payload: type,
+        payload: {
+            type,
+            isOn,
+        },
     };
 };

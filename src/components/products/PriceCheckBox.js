@@ -7,11 +7,15 @@ import { isFilterCheck } from '../store/actions/isFilterCheck';
 
 const PriceCheckBox = ({ type, isCheck }) => {
     const dispatch = useDispatch();
-    
+
     return (
-        <Label onChange={() =>  dispatch(isFilterCheck(type))}>
+        <Label >
             {isCheck && <CheckIcon icon={check} size={12} />}
-            <CheckBox type="checkbox" />
+            <CheckBox
+                type={type === 'Sale' ? "checkbox" : "radio"}
+                name={type === 'Sale' ? "sale" : "filter"}
+                onChange={(e) => dispatch(isFilterCheck(type, e.target.checked))}
+                defaultChecked={type === 'All prices' ? true : false} />
             {type}
         </Label >
     );

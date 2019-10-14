@@ -5,38 +5,58 @@ const filterType = [
     },
     {
         type: 'All prices',
-        check: false
+        check: true,
+        value: {
+            start: 0,
+            end: Infinity
+        },
     },
     {
         type: 'Less then 10 000',
-        check: false
+        check: false,
+        value: {
+            start: 0,
+            end: 10000
+        },
     },
     {
         type: 'Less 10 001 - 20 000',
-        check: false
+        check: false,
+        value: {
+            start: 10001,
+            end: 20000
+        },
     },
     {
         type: 'Less 20 001 - 30 000',
-        check: false
+        check: false,
+        value: {
+            start: 20001,
+            end: 30000
+        },
     },
     {
         type: 'More then 30 001',
-        check: false
+        check: false,
+        value: {
+            start: 30001,
+            end: Infinity,
+        },
     }];
 
- const filterTypes = (state = filterType, action) => {
+const filterTypes = (state = filterType, action) => {
     switch (action.type) {
         case 'IS_CHECK':
-            const newState = state.concat();
+            const newState = state.slice();
+
             newState.map(elem => {
-                if (elem.type === action.payload) {
-                    elem.check = true;
+              elem.check = false
+                if (elem.type === action.payload.type ) {
+                    elem.check = action.payload.isOn;
                     return elem;
-                } else {
-                    elem.check = false;
-                    return elem;
-                };
+                } return elem ;
             });
+            
             return newState;
         default:
             return state;

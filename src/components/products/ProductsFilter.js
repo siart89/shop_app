@@ -5,11 +5,11 @@ import { useSelector } from 'react-redux';
 
 const ProductsFilter = () => {
     const types = useSelector(state => state.filterTypes);
-
+    
     return (
         <FilterWrapper>
             
-            <FilterForm>
+            <FilterForm >
            
                 <PriceFilterBox>
                     <InputPrice type="text" />  <InputPrice type="text" />

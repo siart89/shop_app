@@ -27,7 +27,7 @@ export const InputPrice = styled.input`
     border-radius: 3px;
 `;
 export const CheckBox = styled.input`
-    display:none;
+    display:block;
 `;
 export const Label = styled.label`
     font-size:16px;
@@ -52,6 +52,6 @@ export const CheckIcon = styled(Icon)`
     position:absolute;
     width:10px;
     height:10px;
-    top:-1px;
+    top:-2px;
     left:0;
 `;
