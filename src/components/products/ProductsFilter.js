@@ -1,19 +1,68 @@
-import React from 'react';
-import { FilterWrapper, FilterForm, PriceFilterBox, InputPrice } from './productsStyles.js/productsFilterStyles';
+import React, { useContext, useState, useEffect } from 'react';
+import { FilterWrapper, FilterForm, PriceFilterBox, InputPrice, ConfirmButton, FilterTitle } from './productsStyles.js/productsFilterStyles';
 import PriceCheckBox from './PriceCheckBox';
 import { useSelector } from 'react-redux';
+import { Label, CheckBox, CheckIcon } from './productsStyles.js/productsFilterStyles';
+import { check } from 'react-icons-kit/fa/check';
+import { AllProductsContext } from '../context/AllProductsContext';
+import { useDispatch } from 'react-redux';
+import { inputFilter } from '../store/actions/inputFilter';
 
 const ProductsFilter = () => {
     const types = useSelector(state => state.filterTypes);
-    
+    const { ...checking } = useContext(AllProductsContext);
+    const [minValue, setMinValue] = useState('');
+    const [maxValue, setMaxValue] = useState('');
+    const dispatch = useDispatch();
+
+    const isValueCorrect = () => {
+        if (maxValue && minValue && +minValue > +maxValue) {
+            const min = maxValue,
+                max = minValue;
+            setMaxValue(max);
+            setMinValue(min);
+        };
+    }
+
+
     return (
         <FilterWrapper>
-            
-            <FilterForm >
-           
+        <FilterTitle>Price</FilterTitle>
+            <FilterForm onSubmit={(e) => {
+                e.preventDefault();
+
+                dispatch(inputFilter(+minValue, +maxValue));
+            }}
+            >
+
                 <PriceFilterBox>
-                    <InputPrice type="text" />  <InputPrice type="text" />
+                    {minValue || maxValue ?
+                        <ConfirmButton
+                            onClick={() => isValueCorrect()}
+                        >Show
+                        </ConfirmButton> :
+                        ''}
+                        
+                    <InputPrice
+                        type="text"
+                        onChange={(e) => setMinValue(e.target.value)}
+                        value={minValue} />
+                       
+                    <InputPrice
+                        type="text"
+                        onChange={(e) => setMaxValue(e.target.value)}
+                        value={maxValue} />
                 </PriceFilterBox>
+                <Label >
+                    {checking.saleCheck && <CheckIcon icon={check} size={12} />}
+                    <CheckBox
+                        type="checkbox"
+                        name="sale"
+                        onChange={(e) => checking.setSaleCheck(!checking.saleCheck)}
+                        value="Sale"
+                    />
+                    Sale
+                </Label >
                 {types.map(elem => (
                     <PriceCheckBox
                         type={elem.type}

@@ -1,6 +1,6 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import Icon from 'react-icons-kit';
-
+import { Button } from '../../logIn/styles/logInFieldsStyles';
 export const FilterWrapper = styled.div`
     width:100%;
     
@@ -10,7 +10,19 @@ export const PriceFilterBox = styled.div`
     justify-content:space-between;
     align-items:center;
     padding-bottom:15px;
+    position:relative;
+
 `;
+
+export const ConfirmButton = styled(Button)`
+            width:max-content;
+            padding:5px 18px;
+            position:absolute;
+            right: 0;
+            bottom:-2em;
+            z-index:1;
+`;
+
 export const FilterForm = styled.form`
     display:flex;
     flex-direction:column;
@@ -27,7 +39,7 @@ export const InputPrice = styled.input`
     border-radius: 3px;
 `;
 export const CheckBox = styled.input`
-    display:block;
+    display:none;
 `;
 export const Label = styled.label`
     font-size:16px;
@@ -54,4 +66,10 @@ export const CheckIcon = styled(Icon)`
     height:10px;
     top:-2px;
     left:0;
+`;
+
+export const FilterTitle = styled.h1`
+    padding-left:25px;
+    padding-top:25px;
+    font-size:16px;
 `;

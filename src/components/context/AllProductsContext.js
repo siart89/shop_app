@@ -9,8 +9,9 @@ const initialState = DB;
 export const AllProductsProvider = (props) => {
     console.log(initialState)
     const [data, setData] = useState(initialState);
+    const [saleCheck, setSaleCheck] = useState(false);
     return (
-        <AllProductsContext.Provider value={{data}}>
+        <AllProductsContext.Provider value={{ data, saleCheck, setSaleCheck }}>
             {props.children}
         </AllProductsContext.Provider>
 

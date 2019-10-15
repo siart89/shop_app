@@ -1,46 +1,42 @@
 const filterType = [
     {
-        type: 'Sale',
-        check: false
-    },
-    {
         type: 'All prices',
         check: true,
         value: {
-            start: 0,
-            end: Infinity
+            min: 0,
+            max: Infinity
         },
     },
     {
         type: 'Less then 10 000',
         check: false,
         value: {
-            start: 0,
-            end: 10000
+            min: 0,
+            max: 10000
         },
     },
     {
-        type: 'Less 10 001 - 20 000',
+        type: '10 001 - 20 000',
         check: false,
         value: {
-            start: 10001,
-            end: 20000
+            min: 10001,
+            max: 20000
         },
     },
     {
-        type: 'Less 20 001 - 30 000',
+        type: '20 001 - 30 000',
         check: false,
         value: {
-            start: 20001,
-            end: 30000
+            min: 20001,
+            max: 30000
         },
     },
     {
         type: 'More then 30 001',
         check: false,
         value: {
-            start: 30001,
-            end: Infinity,
+            min: 30001,
+            max: Infinity,
         },
     }];
 
@@ -50,14 +46,24 @@ const filterTypes = (state = filterType, action) => {
             const newState = state.slice();
 
             newState.map(elem => {
-              elem.check = false
-                if (elem.type === action.payload.type ) {
-                    elem.check = action.payload.isOn;
+                if (elem.type === action.payload.type) {
+                    elem.check = action.payload.isOn
                     return elem;
-                } return elem ;
+                } else return elem.check = false;
             });
-            
             return newState;
+        case 'INPUT_FILTER':
+            const inputState = state.slice();
+             inputState.map(elem => {
+                if (elem.type === 'All prices') {
+                    elem.value.min = action.payload.min || 0;
+                    elem.value.max = action.payload.max || Infinity;
+                    elem.check = true;
+                    return 
+
+                } else return elem.check = false;
+            });
+            return inputState;
         default:
             return state;
     };

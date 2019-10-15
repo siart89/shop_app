@@ -5,10 +5,10 @@ import Icon from 'react-icons-kit';
 import { Links } from '../header/headerStyles/headerNavStyles';
 
 
-const ProductItem = ({src, title, price}) => {
+const ProductItem = ({src, title, price, sale}) => {
 
     return (
-        <Item>
+        <Item sale={sale}>
             <ItemImg src={src}/>
             <Links to={`/${title}`} color='#628fd1'>{title}</Links>
             <ItemTitle>{price} 

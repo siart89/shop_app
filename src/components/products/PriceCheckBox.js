@@ -12,10 +12,10 @@ const PriceCheckBox = ({ type, isCheck }) => {
         <Label >
             {isCheck && <CheckIcon icon={check} size={12} />}
             <CheckBox
-                type={type === 'Sale' ? "checkbox" : "radio"}
-                name={type === 'Sale' ? "sale" : "filter"}
+                type="radio"
+                name="filter"
                 onChange={(e) => dispatch(isFilterCheck(type, e.target.checked))}
-                defaultChecked={type === 'All prices' ? true : false} />
+                checked={isCheck} />
             {type}
         </Label >
     );

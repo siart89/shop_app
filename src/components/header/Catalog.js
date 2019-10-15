@@ -16,13 +16,13 @@ const Catalog = () => {
         const category = new Set();
         const arr = [];
         data.goods.forEach(product => {
-            category.add(product.category)
+            category.add(product.category);
         });
-         category.forEach(cat => {
-             arr.push(cat);
-         });
-         return arr
-    };
+        category.forEach(cat => {
+            arr.push(cat);
+        });
+        return arr;
+    }
 
 
     return (
