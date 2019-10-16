@@ -59,7 +59,7 @@ const filterTypes = (state = filterType, action) => {
                     elem.value.min = action.payload.min || 0;
                     elem.value.max = action.payload.max || Infinity;
                     elem.check = true;
-                    return 
+                    return elem;
 
                 } else return elem.check = false;
             });

@@ -24,6 +24,7 @@ const ProductList = () => {
                                     price={product.price}
                                     key={product.title}
                                     sale={product.sale}
+                                    allInfo={product}
                                 />
                             } else return ''
                         } else return <ProductItem
@@ -32,6 +33,7 @@ const ProductList = () => {
                             price={product.price}
                             key={product.title}
                             sale={product.sale}
+                            allInfo={product}
                         />
                     } else return '';
 

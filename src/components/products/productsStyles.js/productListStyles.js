@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import { Button } from '../../logIn/styles/logInFieldsStyles';
 
 export const ListWrapper = styled.div`
     display:grid;
@@ -15,6 +16,9 @@ export const Item = styled.div.attrs(props => ({
     grid-template-columns: 1fr;
     align-items:center;
     position:relative;
+    padding: 0 5px;
+    box-shadow: 0 0 10px #e0dfde;
+    border-radius:3px;
 
     ${props => props.sale && css`
         
@@ -38,11 +42,17 @@ export const ItemImg = styled.img`
     max-width:100%;
 `;
 
-export const ItemTitle = styled.span`
+export const ItemTitle = styled.div`
+    width:100%;
     font-size: 18px;
     font-weight:bold;
     color:#434e5e;
     display:flex;
-    justify-content:flex-start;
+    justify-content:space-between;
     align-items:center;
+`;
+
+export const AddCartButton = styled(Button)`
+    background-color:#f5b00f;
+    width:max-content;
 `;

@@ -1,9 +1,10 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import Icon from 'react-icons-kit';
 import { Button } from '../../logIn/styles/logInFieldsStyles';
+
 export const FilterWrapper = styled.div`
     width:100%;
-    
+    font-family:'Roboto', sans-serif;
 `;
 export const PriceFilterBox = styled.div`
     display:flex;
@@ -64,12 +65,15 @@ export const CheckIcon = styled(Icon)`
     position:absolute;
     width:10px;
     height:10px;
-    top:-2px;
+    top:-1px;
     left:0;
 `;
 
 export const FilterTitle = styled.h1`
     padding-left:25px;
     padding-top:25px;
-    font-size:16px;
+    font-size:20px;
+    font-family:'Open Sans', sans-serif;
+    font-weight:bold;
+    color:#f5b00f;
 `;

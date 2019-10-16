@@ -42,4 +42,15 @@ export const Logo = styled(Link)`
 export const StyledIcon = styled(Icon)`
     color: #e7e6ed;
     cursor:pointer;
+
+    &:hover{
+        color:#f5b00f;
+    }
+`;
+
+export const CartCount = styled.span`
+    color:#00a603;
+    font-weight:bold;
+    font-size:14px;
+    padding-left:5px;
 `;

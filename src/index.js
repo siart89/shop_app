@@ -18,8 +18,11 @@ const store = createStore(
 );
 
 const GlobalStyle = createGlobalStyle`
+    @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600,700,700i&display=swap');
+    
     body {
       background:#fff;
+      font-family: 'Open Sans', sans-serif;
     }
     
     *{
@@ -27,6 +30,7 @@ const GlobalStyle = createGlobalStyle`
       margin:0;
       box-sizing: border-box;
     }
+    
   `
 
 

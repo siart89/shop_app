@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Links, NavWrapper, LinksWrapper, Logo, StyledIcon } from './headerStyles/headerNavStyles';
+import { Links, NavWrapper, LinksWrapper, Logo, StyledIcon, CartCount } from './headerStyles/headerNavStyles';
 import SearchInput from './SearchInput';
 import Catalog from './Catalog';
 import { useSelector } from 'react-redux';
@@ -10,6 +10,7 @@ import { shoppingCart } from 'react-icons-kit/fa/shoppingCart';
 
 const HeaderNav = () => {
     const users = useSelector(state => state.users);
+    const cart = useSelector(state => state.cart);
     const [isLogIn, setIsLogIn] = useState(null);
 
     const setCurrentUserIsLogged = (arr) => {
@@ -26,7 +27,7 @@ const HeaderNav = () => {
     const UserIsExit = () => {
         setIsLogIn(null);
     };
-    
+
     return (
 
         <NavWrapper>
@@ -40,7 +41,11 @@ const HeaderNav = () => {
                             user={isLogIn}
                             UserIsExit={UserIsExit}
                         />
-                        <StyledIcon icon={shoppingCart} size={20} />
+                        <Links to="/cart">
+                            <StyledIcon icon={shoppingCart} size={22} />
+                            <CartCount>{cart.length}</CartCount>
+                        </Links>
+
                     </> :
                     <>
                         <Links to="/logIn">log in</Links>

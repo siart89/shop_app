@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState } from 'react';
 import { FilterWrapper, FilterForm, PriceFilterBox, InputPrice, ConfirmButton, FilterTitle } from './productsStyles.js/productsFilterStyles';
 import PriceCheckBox from './PriceCheckBox';
 import { useSelector } from 'react-redux';
@@ -28,6 +28,7 @@ const ProductsFilter = () => {
     return (
         <FilterWrapper>
         <FilterTitle>Price</FilterTitle>
+        
             <FilterForm onSubmit={(e) => {
                 e.preventDefault();
 
