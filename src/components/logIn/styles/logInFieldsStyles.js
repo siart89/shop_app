@@ -6,7 +6,8 @@ import {Icon} from 'react-icons-kit';
 
 export const Wrapper = styled.div`
     height:100vh;
-    width:1480px;
+    max-width:1480px;
+    width:100%;
     background: rgba(218, 229, 242, .4);
     padding-top:200px;
     top:55px;

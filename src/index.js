@@ -11,6 +11,7 @@ import LogIn from './pages/LogIn';
 import SignIn from './pages/SignIn';
 import UserMenu from './components/usersProfile/UserMenu';
 import { AllProductsProvider } from './components/context/AllProductsContext';
+import ShoppingCart from './pages/ShoppingCart';
 
 const store = createStore(
   AllReducers,
@@ -31,7 +32,7 @@ const GlobalStyle = createGlobalStyle`
       box-sizing: border-box;
     }
     
-  `
+  `;
 
 
 ReactDOM.render(
@@ -44,6 +45,7 @@ ReactDOM.render(
           <Route path='/logIn' component={LogIn} />
           <Route path='/signIn' component={SignIn} />
           <Route path='/user/:logUser' component={UserMenu} />
+          <Route path='/cart' component={ShoppingCart} />
         </Switch>
       </Provider>
     </AllProductsProvider>

@@ -5,8 +5,9 @@ import Icon from 'react-icons-kit';
 import { Links } from '../header/headerStyles/headerNavStyles';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCart } from '../store/actions/addToCart';
+import { cartToLocalStorage } from '../store/actions/cartToLocalStorage';
 import { useHistory } from 'react-router-dom';
-import { removeFromCart } from '../store/actions/removeFromCart';
+
 
 const ProductItem = ({ src, title, price, sale, allInfo }) => {
     const [isAdd, setIsAdd] = useState(false);
@@ -34,6 +35,7 @@ const ProductItem = ({ src, title, price, sale, allInfo }) => {
             history.push('/cart')
         } else {
             dispatch(addToCart(allInfo));
+            dispatch(cartToLocalStorage())
         }
 
     };
