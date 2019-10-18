@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addToCart } from '../store/actions/addToCart';
 import { cartToLocalStorage } from '../store/actions/cartToLocalStorage';
 import { useHistory } from 'react-router-dom';
-
+import PropTypes from 'prop-types';
 
 const ProductItem = ({ src, title, price, sale, allInfo }) => {
     const [isAdd, setIsAdd] = useState(false);
@@ -22,20 +22,20 @@ const ProductItem = ({ src, title, price, sale, allInfo }) => {
                 match = true;
                 return;
             } else return;
-        })
+        });
         if (match) {
-            setIsAdd(true)
-        } else setIsAdd(false)
-    }, [cart, title])
+            setIsAdd(true);
+        } else setIsAdd(false);
+    }, [cart, title]);
 
 
     const addProductToCart = () => {
 
         if (isAdd) {
-            history.push('/cart')
+            history.push('/cart');
         } else {
             dispatch(addToCart(allInfo));
-            dispatch(cartToLocalStorage())
+            dispatch(cartToLocalStorage());
         }
 
     };
@@ -56,6 +56,15 @@ const ProductItem = ({ src, title, price, sale, allInfo }) => {
             </ItemTitle>
         </Item>
     );
+};
+
+ProductItem.propTypes = {
+    src: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    sale: PropTypes.bool.isRequired,
+    allInfo: PropTypes.object.isRequired
+
 };
 
 export default ProductItem;

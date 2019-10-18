@@ -4,7 +4,7 @@ export const CartWrapper = styled.div`
     max-width: 1020px;
     margin: 20px auto;
     box-shadow: 0 1px 4px #e0e0e0;
-    background-color: #f0f0f0;
+    background-color: #fff;
     position:relative;
 `;
 export const CartSection = styled.section`
@@ -18,7 +18,7 @@ export const CartSection = styled.section`
 
 export const CartImg = styled.img`
     max-width:100%;
-    max-height:100%;
+    max-height:150px;
 `;
 export const CartText = styled.div`
     padding-top:15px;
