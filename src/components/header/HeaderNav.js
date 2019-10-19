@@ -16,13 +16,13 @@ const HeaderNav = () => {
     const setCurrentUserIsLogged = (arr) => {
         arr.forEach(user => {
             if (user.logged) {
-                setIsLogIn(user.login)
-            };
+                setIsLogIn(user.login);
+            }
         });
     };
 
     useEffect(() => {
-        setCurrentUserIsLogged(users)
+        setCurrentUserIsLogged(users);
     }, [users]);
     const UserIsExit = () => {
         setIsLogIn(null);

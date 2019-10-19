@@ -4,12 +4,13 @@ import { toLocalStorage } from '../store/actions/toLocalStorage';
 import { useDispatch } from 'react-redux';
 import { Links } from '../header/headerStyles/headerNavStyles';
 import { PopUpWrapper } from './styles/popUpWrapper';
-
+import PropTypes from 'prop-types';
 
 const UserInfo = ({ user, UserIsExit }) => {
     const [isClick, setIsClick] = useState(false);
     const dispatch = useDispatch();
 
+   
     return (
         <div onClick={() => setIsClick(!isClick)}>
             <Links to='' as='div'>{user}</Links>
@@ -20,7 +21,11 @@ const UserInfo = ({ user, UserIsExit }) => {
                     <Links to="" color='black' padding>Edit profile</Links>
                     <Links to="/" color='black'
                         padding
-                        onClick={() => { dispatch(logOut()); dispatch(toLocalStorage()); UserIsExit() }}>
+                        onClick={() => {
+                            dispatch(logOut());
+                            dispatch(toLocalStorage());
+                            UserIsExit();
+                        }}>
                         Exit
                     </Links>
 
@@ -29,6 +34,11 @@ const UserInfo = ({ user, UserIsExit }) => {
             }
         </div>
     );
+};
+
+UserInfo.propTypes = {
+    user: PropTypes.string.isRequired,
+    UserIsExit: PropTypes.func.isRequired
 };
 
 export default UserInfo;

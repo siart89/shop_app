@@ -10,7 +10,7 @@ export const NavWrapper = styled.div`
     background:#26205c;
     display:grid;
     padding: 0 5vw;
-    grid-template-columns: 1fr 1fr 4fr 1fr;
+    grid-template-columns: 1fr 2fr 5fr 2fr;
     align-items:center;
 `;
 
@@ -22,8 +22,8 @@ export const LinksWrapper = styled.div`
 `;
 
 export const Links = styled(Link).attrs(props => ({
-        padding: props.padding && '7px'
-    }))`
+    padding: props.padding && '7px'
+}))`
     text-decoration:none;
     font-size: 14px;
     color: ${props => props.color || '#e7e6ed'};

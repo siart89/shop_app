@@ -1,21 +1,21 @@
 import React, { useState, useContext } from 'react';
-import { BurgerWrapper, Title, TitleWrapper } from './headerStyles/catalogStyles';
+import { BurgerWrapper, Title, TitleWrapper, Text, CatalogPopUp } from './headerStyles/catalogStyles';
 import { navicon } from 'react-icons-kit/fa/navicon';
-import { StyledIcon, Links } from './headerStyles/headerNavStyles';
-import { PopUpWrapper } from '../logIn/styles/popUpWrapper';
+import { StyledIcon } from './headerStyles/headerNavStyles';
 import { remove } from 'react-icons-kit/fa/remove';
 import { AllProductsContext } from '../context/AllProductsContext';
 
 
 const Catalog = () => {
     const [toggle, setToggle] = useState(false);
-    const { data } = useContext(AllProductsContext);
-    const category = initState();
+    const { ...data } = useContext(AllProductsContext);
+    const usageCategory = initState();
 
     function initState() {
         const category = new Set();
+        category.add('Все категории');
         const arr = [];
-        data.goods.forEach(product => {
+        data.data.goods.forEach(product => {
             category.add(product.category);
         });
         category.forEach(cat => {
@@ -38,15 +38,19 @@ const Catalog = () => {
                         size={22}
                     />
                 }
-                <Title>All</Title>
+                <Title>{data.category}</Title>
             </TitleWrapper>
 
             {toggle ?
-                <PopUpWrapper>
-                    {category.map(cat => (
-                        <Links key={cat} to={`/${cat}`} color='black' padding>{cat}</Links>
+                <CatalogPopUp>
+                    {usageCategory.map(category => (
+                        <Text
+                            key={category}
+                            color="#5c5b5a"
+                            onClick={() => data.setCategory(category)}
+                        >{category}</Text>
                     ))}
-                </PopUpWrapper> :
+                </CatalogPopUp> :
                 ''
             }
         </BurgerWrapper>

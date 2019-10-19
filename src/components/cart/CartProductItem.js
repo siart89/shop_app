@@ -5,6 +5,8 @@ import { removeFromCart } from '../store/actions/removeFromCart';
 import { cartToLocalStorage } from '../store/actions/cartToLocalStorage';
 import { incrementAmount } from './../store/actions/incrementAmount';
 import { decrementAmount } from './../store/actions/decrementAmount';
+import PropTypes from 'prop-types';
+
 const CartProductItem = ({ src, title, price, amount, total }) => {
 
     const dispatch = useDispatch();
@@ -45,6 +47,14 @@ const CartProductItem = ({ src, title, price, amount, total }) => {
         </>
 
     );
+};
+
+CartProductItem.propTypes = {
+    src: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    amount: PropTypes.number.isRequired,
+    total: PropTypes.number.isRequired
 };
 
 export default CartProductItem;

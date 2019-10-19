@@ -8,35 +8,46 @@ import { priceCompare } from '../store/actions/priceCompare';
 const ProductList = () => {
     const { ...data } = useContext(AllProductsContext);
     const filter = useSelector(state => state.filterTypes);
-   
+    const regExp = new RegExp(data.searchText, 'i');
+    const usageFilters = (price, sale, img, title, product) => {
+        // PRICE FILTER USAGE
+        if (priceCompare(filter, +price)) {
+            //SALE FILTER USAGE
+            if (data.saleCheck) {
+                if (sale) {
+                    return <ProductItem
+                        src={img}
+                        title={title}
+                        price={price}
+                        key={title}
+                        sale={sale}
+                        allInfo={product}
+                    />;
+                } else return '';
+            } else return <ProductItem
+                src={img}
+                title={title}
+                price={price}
+                key={title}
+                sale={sale}
+                allInfo={product}
+            />;
+        } else return '';
+    };
+
     return (
         <>
             <ListWrapper>
                 {data.data.goods.map(product => {
-                    // PRICE FILTER USAGE
-                    if (priceCompare(filter, +product.price)) {
-                        //SALE FILTER USAGE
-                        if (data.saleCheck) {
-                            if (product.sale) {
-                                return <ProductItem
-                                    src={product.img}
-                                    title={product.title}
-                                    price={product.price}
-                                    key={product.title}
-                                    sale={product.sale}
-                                    allInfo={product}
-                                />
-                            } else return ''
-                        } else return <ProductItem
-                            src={product.img}
-                            title={product.title}
-                            price={product.price}
-                            key={product.title}
-                            sale={product.sale}
-                            allInfo={product}
-                        />
+                    
+                    if (regExp.test(product.title)) {
+                        // USE CATEGORY FILTER
+                        if (data.category === product.category) {
+                            return usageFilters(product.price, product.sale, product.img, product.title, product);
+                        } else if (data.category === 'Все категории') {
+                            return usageFilters(product.price, product.sale, product.img, product.title, product);
+                        } else return '';
                     } else return '';
-
                 }
                 )}
             </ListWrapper>

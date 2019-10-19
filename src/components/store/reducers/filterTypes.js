@@ -42,30 +42,30 @@ const filterType = [
 
 const filterTypes = (state = filterType, action) => {
     switch (action.type) {
-        case 'IS_CHECK':
-            const newState = state.slice();
+    case 'IS_CHECK':
+        const newState = state.slice();
 
-            newState.map(elem => {
-                if (elem.type === action.payload.type) {
-                    elem.check = action.payload.isOn
-                    return elem;
-                } else return elem.check = false;
-            });
-            return newState;
-        case 'INPUT_FILTER':
-            const inputState = state.slice();
-             inputState.map(elem => {
-                if (elem.type === 'All prices') {
-                    elem.value.min = action.payload.min || 0;
-                    elem.value.max = action.payload.max || Infinity;
-                    elem.check = true;
-                    return elem;
+        newState.map(elem => {
+            if (elem.type === action.payload.type) {
+                elem.check = action.payload.isOn;
+                return elem;
+            } else return elem.check = false;
+        });
+        return newState;
+    case 'INPUT_FILTER':
+        const inputState = state.slice();
+        inputState.map(elem => {
+            if (elem.type === 'All prices') {
+                elem.value.min = action.payload.min || 0;
+                elem.value.max = action.payload.max || Infinity;
+                elem.check = true;
+                return elem;
 
-                } else return elem.check = false;
-            });
-            return inputState;
-        default:
-            return state;
-    };
+            } else return elem.check = false;
+        });
+        return inputState;
+    default:
+        return state;
+    }
 };
 export default filterTypes;

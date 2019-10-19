@@ -5,10 +5,10 @@ const confirmValue = (state = '', action) => {
                 login: action.payload.login,
                 password: action.payload.password,
                 isLogged: action.payload.isLogged,
-            }
+            };
         default:
             return state;
-    };
+    }
 };
 
 export default confirmValue;
