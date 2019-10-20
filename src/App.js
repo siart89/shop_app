@@ -10,14 +10,14 @@ export const AppWrapper = styled.div`
 
 
 function App() {
-  return (
+    return (
    
-      <AppWrapper>
-        <Main />
-      </AppWrapper>
+        <AppWrapper>
+            <Main />
+        </AppWrapper>
    
 
-  );
+    );
 }
 
 export default App;

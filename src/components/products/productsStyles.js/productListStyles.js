@@ -12,11 +12,12 @@ export const Item = styled.div.attrs(props => ({
     sale: props.sale
 }))`
     display:grid;
-    grid-template-rows: 350px 45px 45px;
+    justify-self:center;
+    grid-template-rows: 250px 45px 45px;
     grid-template-columns: 1fr;
     align-items:center;
     position:relative;
-    padding: 0 5px;
+    padding: 0 15px 10px;
     box-shadow: 0 0 10px #e0dfde;
     border-radius:3px;
 
@@ -40,6 +41,7 @@ export const Item = styled.div.attrs(props => ({
 
 export const ItemImg = styled.img`
     max-width:100%;
+    max-height:230px;
 `;
 
 export const ItemTitle = styled.div`

@@ -83,7 +83,8 @@ export const Title = styled.div`
     width:100%;
     text-align:center;
     padding-bottom:1em;
-`
+`;
+
 export const ErrMessage = styled.div`
     position:absolute;
     top:-10px;
@@ -91,7 +92,7 @@ export const ErrMessage = styled.div`
     color:#eb385c;
     font-size:12px;
     font-weight:bold;
-`
+`;
 
 export const CloseButton = styled(Link)`
     position: absolute;

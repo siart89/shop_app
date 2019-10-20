@@ -5,9 +5,9 @@ export const verification = (login, password, users) => {
         if (login === user.login && password === user.password) {
             log = true;
             return;
-        } else log = false
+        } else log = false;
         
-    }) 
+    });
     return {
         type: 'CHECK_USER',
         payload: {

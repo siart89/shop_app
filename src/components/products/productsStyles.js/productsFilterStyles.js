@@ -50,6 +50,9 @@ export const Label = styled.label`
     line-height:18px;
     display:flex;
     align-items:center;
+    font-family:'Open Sans',sans-serif;
+    font-weight:600;
+    color:#636363;
 
     &::before{
         content:'';
@@ -59,6 +62,10 @@ export const Label = styled.label`
         border:1px solid black;
         left:0;
     };
+
+    &:hover{
+        text-shadow: 1px 1px 2px #969186;
+    }
 `;
 
 export const CheckIcon = styled(Icon)`

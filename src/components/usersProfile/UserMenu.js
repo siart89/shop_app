@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const UserMenu = ({match}) => {
 
@@ -9,6 +10,10 @@ const UserMenu = ({match}) => {
             Something {match.params.logUser}
         </div>
     );
+};
+
+UserMenu.propTypes = {
+    match:PropTypes.object.isRequired
 };
 
 export default UserMenu;

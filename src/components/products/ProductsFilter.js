@@ -21,14 +21,14 @@ const ProductsFilter = () => {
                 max = minValue;
             setMaxValue(max);
             setMinValue(min);
-        };
-    }
+        }
+    };
 
 
     return (
         <FilterWrapper>
-        <FilterTitle>Price</FilterTitle>
-        
+            <FilterTitle>Price</FilterTitle>
+
             <FilterForm onSubmit={(e) => {
                 e.preventDefault();
 
@@ -43,12 +43,12 @@ const ProductsFilter = () => {
                         >Show
                         </ConfirmButton> :
                         ''}
-                        
+
                     <InputPrice
                         type="text"
                         onChange={(e) => setMinValue(e.target.value)}
                         value={minValue} />
-                       
+
                     <InputPrice
                         type="text"
                         onChange={(e) => setMaxValue(e.target.value)}
@@ -59,7 +59,7 @@ const ProductsFilter = () => {
                     <CheckBox
                         type="checkbox"
                         name="sale"
-                        onChange={(e) => checking.setSaleCheck(!checking.saleCheck)}
+                        onChange={() => checking.setSaleCheck(!checking.saleCheck)}
                         value="Sale"
                     />
                     Sale

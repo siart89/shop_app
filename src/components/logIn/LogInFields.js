@@ -14,14 +14,14 @@ const LogInFields = () => {
     const [pass, setPass] = useState('');
     const [isClicked, setIsClicked] = useState(false);
     const history = useHistory();
-    const [currentUser, setCurrentUser] = useState(false)
+    const [currentUser, setCurrentUser] = useState(false);
 
     const isCorrectUser = () => {
         users.forEach(user => {
             if (user.login === login && user.password === pass) {
                 setCurrentUser(true);
                 return;
-            };
+            }
         });
     };
 

@@ -24,10 +24,10 @@ const SignInFields = () => {
         users.forEach(user => {
             if (user.logged) {
                 setIsLogIn(user.login);
-                setTimeout(() => { history.push('/') }, 2000);
-            };
+                setTimeout(() => { history.push('/');}, 2000);
+            }
         });
-    })
+    });
 
     function addUserOnSubmit(e) {
         e.preventDefault();
@@ -35,9 +35,9 @@ const SignInFields = () => {
         if (currentEmail && currentLogin) {
             dispatch(addUser(email, login, password));
             dispatch(toLocalStorage());
-        };
+        }
 
-    };
+    }
 
 
     const checkUsers = () => {
@@ -64,7 +64,7 @@ const SignInFields = () => {
                             required
                             onChange={(e) => {
                                 setEmail(e.target.value);
-                                setCurrentEmail(true)
+                                setCurrentEmail(true);
                             }}
                         />
                         <Input
@@ -74,7 +74,7 @@ const SignInFields = () => {
                             secondary
                             onChange={(e) => {
                                 setLogin(e.target.value);
-                                setCurrentLogin(true)
+                                setCurrentLogin(true);
                             }}
                         />
                         <Input

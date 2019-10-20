@@ -14,11 +14,13 @@ export const CartSection = styled.section`
     grid-template-columns: 150px 7fr 1fr 2fr 1fr;
     grid-auto-rows: 150px; 
     grid-gap: 15px;
+    align-items:center;
 `;
 
 export const CartImg = styled.img`
     max-width:100%;
     max-height:150px;
+    justify-self:center;
 `;
 export const CartText = styled.div`
     padding-top:15px;
