@@ -9,6 +9,9 @@ const ProductList = () => {
     const { ...data } = useContext(AllProductsContext);
     const filter = useSelector(state => state.filterTypes);
     const regExp = new RegExp(data.searchText, 'i');
+
+    
+
     const usageFilters = (price, sale, img, title, product) => {
         // PRICE FILTER USAGE
         if (priceCompare(filter, +price)) {

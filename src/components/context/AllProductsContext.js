@@ -13,9 +13,15 @@ export const AllProductsProvider = (props) => {
     const [saleCheck, setSaleCheck] = useState(false);
     const [category, setCategory] = useState('Все категории');
     const [searchText, setSearchText] = useState(new RegExp(''));
+    const [user, setUser] = useState(false);
     return (
         <AllProductsContext.Provider
-            value={{ data, saleCheck, setSaleCheck, category, setCategory, searchText, setSearchText }}>
+            value={{
+                data, saleCheck,
+                setSaleCheck, category,
+                setCategory, searchText, setSearchText,
+                user, setUser,
+            }}>
             {props.children}
         </AllProductsContext.Provider>
 

@@ -12,6 +12,7 @@ export const Item = styled.div.attrs(props => ({
     sale: props.sale
 }))`
     display:grid;
+    width:100%;
     justify-self:center;
     grid-template-rows: 250px 45px 45px;
     grid-template-columns: 1fr;

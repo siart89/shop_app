@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Item, ItemImg, ItemTitle, AddCartButton } from './productsStyles.js/productListStyles';
 import { ruble } from 'react-icons-kit/fa/ruble';
 import Icon from 'react-icons-kit';
@@ -8,33 +8,44 @@ import { addToCart } from '../store/actions/addToCart';
 import { cartToLocalStorage } from '../store/actions/cartToLocalStorage';
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { AllProductsContext } from '../context/AllProductsContext';
 
 const ProductItem = ({ src, title, price, sale, allInfo }) => {
     const [isAdd, setIsAdd] = useState(false);
     const cart = useSelector(state => state.cart);
+    const allUsers = useSelector(state => state.users);
     const dispatch = useDispatch();
     const history = useHistory();
+    const {...data} = useContext(AllProductsContext);
+
+   
 
     useEffect(() => {
-        let match = null;
-        cart.forEach(elem => {
-            if (elem.title === title) {
-                match = true;
-                return;
-            } else return;
-        });
-        if (match) {
+        const currentUser = () => {
+            const activeUser = allUsers.find(item => item.logged);
+            if (activeUser) {
+                data.setUser(activeUser.login);
+                return activeUser.login;
+            } else {
+                data.setUser(false);
+                return false;
+            }
+            
+        };
+        const user = currentUser();
+        // ПРОВЕРКА СООТВЕТСТВИЯ КОРЗИНА КАКОГО ПОЛЬЗОВАТЕЛЯ ЗАДЕЙСТВОВАНА
+
+        if (cart.find(item => item.title === title && item.user === user)) {
             setIsAdd(true);
         } else setIsAdd(false);
-    }, [cart, title]);
+    }, [cart, title, allUsers, data]);
 
 
     const addProductToCart = () => {
-
         if (isAdd) {
-            history.push('/cart');
+            history.push(`/cart/${data.user}`);
         } else {
-            dispatch(addToCart(allInfo));
+            dispatch(addToCart(allInfo, data.user));
             dispatch(cartToLocalStorage());
         }
 
@@ -49,10 +60,14 @@ const ProductItem = ({ src, title, price, sale, allInfo }) => {
                     {price}
                     <Icon icon={ruble} size={12} />
                 </div>
-                <AddCartButton
-                    onClick={addProductToCart}
-                >{isAdd ? 'Go to cart' : 'Add to cart'}
-                </AddCartButton>
+                {data.user ?
+                    <AddCartButton
+                        onClick={addProductToCart}
+                    >
+                        {isAdd ? 'Go to cart' : 'Add to cart'}
+                    </AddCartButton> :
+                    ''}
+
             </ItemTitle>
         </Item>
     );

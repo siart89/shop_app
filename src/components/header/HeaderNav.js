@@ -5,6 +5,7 @@ import Catalog from './Catalog';
 import { useSelector } from 'react-redux';
 import UserInfo from '../logIn/UserInfo';
 import { shoppingCart } from 'react-icons-kit/fa/shoppingCart';
+import { calcUserCartlength } from '../store/actions/calcUserCartLength';
 
 
 
@@ -41,9 +42,9 @@ const HeaderNav = () => {
                             user={isLogIn}
                             UserIsExit={UserIsExit}
                         />
-                        <Links to="/cart">
+                        <Links to={`/cart/${isLogIn}`}>
                             <StyledIcon icon={shoppingCart} size={22} />
-                            <CartCount>{cart.length}</CartCount>
+                            <CartCount>{calcUserCartlength(cart, isLogIn).length}</CartCount>
                         </Links>
 
                     </> :

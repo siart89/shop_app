@@ -1,16 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { logOut } from '../store/actions/logOut';
 import { toLocalStorage } from '../store/actions/toLocalStorage';
 import { useDispatch } from 'react-redux';
 import { Links } from '../header/headerStyles/headerNavStyles';
 import { PopUpWrapper } from './styles/popUpWrapper';
 import PropTypes from 'prop-types';
+import { AllProductsContext } from '../context/AllProductsContext';
 
 const UserInfo = ({ user, UserIsExit }) => {
     const [isClick, setIsClick] = useState(false);
     const dispatch = useDispatch();
+    const { ...data } = useContext(AllProductsContext);
 
-   
     return (
         <div onClick={() => setIsClick(!isClick)}>
             <Links to='' as='div'>{user}</Links>
@@ -25,6 +26,7 @@ const UserInfo = ({ user, UserIsExit }) => {
                             dispatch(logOut());
                             dispatch(toLocalStorage());
                             UserIsExit();
+                            data.setUser(false);
                         }}>
                         Exit
                     </Links>

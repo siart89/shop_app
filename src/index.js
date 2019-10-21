@@ -45,7 +45,7 @@ ReactDOM.render(
                     <Route path='/logIn' component={LogIn} />
                     <Route path='/signIn' component={SignIn} />
                     <Route path='/user/:logUser' component={UserMenu} />
-                    <Route path='/cart' component={ShoppingCart} />
+                    <Route path='/cart/:user' component={ShoppingCart} />
                 </Switch>
             </Provider>
         </AllProductsProvider>

@@ -1,7 +1,7 @@
 const cart = (state = JSON.parse(localStorage.getItem('shoppingCart')) || [], action) => {
     switch (action.type) {
     case 'ADD_TO_CART':
-        return [...state, { ...action.payload, amount: 1, totalPrice: action.payload.price }];
+        return [...state, { ...action.payload, amount: 1, totalPrice: action.payload.price, user:action.user }];
 
     case 'REMOVE_FROM_CART':
         const newState = [];
